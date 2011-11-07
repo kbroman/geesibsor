@@ -1,0 +1,46 @@
+
+Revision history for the R/geesibsor package
+----------------------------------------------------------------------
+copyright (c) 2003-2011, Karl W Broman
+Licensed under the GNU General Public License version 2 (June, 1991)
+http://www.biostat.wisc.edu/~kbroman/software
+----------------------------------------------------------------------
+
+Verison 0.51-2, 11/7/2011:
+
+  Added NAMESPACE.
+
+
+Version 0.50-6, 10/26/2009:
+
+  Fix links in help files.
+
+
+Version 0.50-5, 10/9/2007:
+
+  Minuscule changes to the help files, to conform to a change in R.
+
+
+Version 0.50-4, 9/20/2007:
+
+  Changed references to my email/web pages, due to my move to 
+  UW-Madison.
+
+
+Version 0.50-3, 10/16/2006:
+
+  Added use of PACKAGE argument in call to .C().
+
+
+Version 0.50-2, 10/25/2005:
+
+  Fixed a couple of things in the C code to eliminate some completely
+  immaterial warning messages when compiling the package.
+
+
+Version 0.50-1, 9/23/2003:
+
+  A brand-new package.
+
+----------------------------------------------------------------------
+end of STATUS.txt

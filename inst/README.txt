@@ -1,0 +1,98 @@
+
+README file for the geesibsor package
+----------------------------------------------------------------------
+This explains the installation of the geesibsor package for R.  If you
+have any problems with installation, send an email to Karl Broman
+<kbroman@biostat.wisc.edu>.
+----------------------------------------------------------------------
+
+OBTAINING R
+
+  You can download R from the Comprehensive R Archive Network (CRAN).
+  Visit http://cran.r-project.org or a local mirror (for example,
+  http://cran.us.r-project.org).  Source code is available for Unix,
+  and binaries are available for Windows, MacOS, and many versions of
+  Linux.  
+
+
+OBTAINING R/geesibsor
+
+  You can obtain the latest version of R/geesibsor from 
+
+      http://www.biostat.wisc.edu/~kbroman/software
+
+  Copies of R/geesibsor will also be placed on CRAN (cran.r-project.org),
+  but the version at the above site will be updated more frequently.
+  Binaries are available for Windows and MacOS; source code is
+  available for Unix.
+
+
+INSTALLATION OF R AND R/geesibsor (Windows)
+
+  1. The Windows version of R is distributed as a single file,
+     SetupR.exe.  Install R by executing this file.  We recommend
+     installing R in "c:\R" rather than "c:\Program Files\R".  Why
+     didn't Microsoft use "Programs" rather than "Program files"?
+
+  2. To install R/geesibsor, you may do one of the following:
+
+     Start R.  Select (on the menu bar) "Packages" and then
+     "Install package from local zip file...".  Find the file
+     "geesibsor.zip" on your hard drive, and click "Open".
+
+
+INSTALLATION OF R/geesibsor (Unix)
+
+  1. We'll assume that R has already been installed. 
+
+  2. Go into the directory containing the file "geesibsor_*.tar.gz".
+
+  3. Do one of the following:
+
+     a. To install R/geesibsor in the standard location
+        (/usr/local/lib/R/library), type 
+
+            R INSTALL geesibsor_*.tar.gz
+
+        You'll probably need to be superuser.
+
+     b. To install the package locally, type 
+
+            R INSTALL --library=/home/auser/Rlibs geesibsor_*.tar.gz
+
+        (where "/home/auser/Rlibs" should be replaced with the
+        appropriate directory).  
+
+        Create a file ~/.Renviron containing the line
+
+            R_LIBS=/home/auser/Rlibs
+
+        so that R will know to search for packages in that directory.
+
+
+GETTING STARTED
+
+  Once you start R, you'll need to type "library(geesibsor)" to load
+  the package.  You can create a file "~/.Rprofile" (Unix),
+  "c:\.Rprofile" (Windows)containing R code to be run whenever you
+  start R.  If you use the R/geesibsor package regularly, you should
+  place the line "library(geesibsor)" in such a file.
+
+  To get started with R/geesibsor, you might first peruse the
+  documentation that is bundled with it.  Type help.start() to start
+  the html version of the R help pages.  Then click "Packages" ->
+  "geesibsor".
+
+  In Windows, you may gain access to the help documents by clicking
+  "Help" in the menu bar and then "R language (html)".  Windows users
+  may wish to place the line "options(htmlhelp=TRUE)" in the file
+  "c:\.Rprofile" (Windows).
+
+
+QUESTIONS/COMMENTS/CONCERNS
+
+  If you have any questions, suggestions, problems or complaints
+  regarding R/geesibsor, please email Karl Broman <kbroman@biostat.wisc.edu>.
+  
+----------------------------------------------------------------------
+end of README.txt

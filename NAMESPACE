@@ -1,0 +1,7 @@
+useDynLib(geesibsor)
+
+# Export function
+export(gee.sibs.or)
+
+# imports
+importFrom(stats, glm)
