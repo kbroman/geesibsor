@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/kbroman/geesibsor.png?branch=master)](https://travis-ci.org/kbroman/geesibsor)
 
-copyright (c) 2001-2012, [Karl W Broman](http://kbroman.org)
+[Karl W Broman](http://kbroman.org)
 
 [R/geesibsor](https://github.com/kbroman/geesibsor) is an R package for estimating the odds ratio for siblings
 for a binary phenotype, adjusting for covariates, using generalized
