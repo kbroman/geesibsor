@@ -1,6 +1,6 @@
 ## R/geesibsor
 
-[![Build Status](https://travis-ci.org/kbroman/geesibsor.png?branch=master)](https://travis-ci.org/kbroman/geesibsor)
+[![Build Status](https://travis-ci.org/kbroman/geesibsor.svg?branch=master)](https://travis-ci.org/kbroman/geesibsor)
 
 [Karl W Broman](http://kbroman.org)
 
