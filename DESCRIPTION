@@ -7,4 +7,4 @@ Maintainer: Karl W Broman <kbroman@biostat.wisc.edu>
 Description: Estimate the odds ratio for siblings for a binary phenotype, adjusting for covariates, using generalized estimating equations.
 Depends: R (>= 2.10.1), stats
 License: GPL version 2 or later
-URL: http://www.biostat.wisc.edu/~kbroman/software
+URL: https://github.com/kbroman/geesibsor
