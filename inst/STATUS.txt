@@ -1,9 +1,8 @@
-
 Revision history for the R/geesibsor package
 ----------------------------------------------------------------------
 copyright (c) 2003-2011, Karl W Broman
 Licensed under the GNU General Public License version 2 (June, 1991)
-http://www.biostat.wisc.edu/~kbroman/software
+https://github.com/kbroman/geesibsor
 ----------------------------------------------------------------------
 
 Verison 0.51-2, 11/7/2011:
@@ -23,7 +22,7 @@ Version 0.50-5, 10/9/2007:
 
 Version 0.50-4, 9/20/2007:
 
-  Changed references to my email/web pages, due to my move to 
+  Changed references to my email/web pages, due to my move to
   UW-Madison.
 
 
