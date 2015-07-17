@@ -1,6 +1,6 @@
 Package: geesibsor
-Version: 0.51-2
-Date: 2011-11-07
+Version: 0.51-3
+Date: 2015-07-17
 Title: Odds Ratio for Siblings by GEE
 Author: Karl W Broman <kbroman@biostat.wisc.edu>
 Maintainer: Karl W Broman <kbroman@biostat.wisc.edu>
