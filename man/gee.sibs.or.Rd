@@ -9,7 +9,7 @@
 }
 
 \usage{
-gee.sibs.or(y, x, id, beta, gamma, give.se=TRUE, return.intercept=FALSE,
+gee.sibs.or(y, x, id, beta=NULL, gamma=0.5, give.se=TRUE, return.intercept=FALSE,
             maxit=1000, tol=1e-5, eta.tol=1e-9, trace=FALSE, debug=FALSE,
             method=c("gee2","gee1","identity"))}
 \arguments{

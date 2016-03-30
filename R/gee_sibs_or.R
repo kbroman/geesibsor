@@ -1,13 +1,13 @@
 ######################################################################
 # gee_sibs_or.R
-# 
+#
 # Karl W. Broman
 #
 # first written 17 Sept 2003
 # last modified 16 Oct 2006
 #
-# The goal of this is to estimate the log odds ratio between siblings 
-# for some binary response, after controlling for covariates.  We 
+# The goal of this is to estimate the log odds ratio between siblings
+# for some binary response, after controlling for covariates.  We
 # seek to solve the GEE corresponding to logit{E(y|x)} = x beta
 # and log OR(y1, y2 | x) = gamma.
 #
@@ -15,7 +15,7 @@
 #
 #   KY Liang and TH Beaty (1991) Measuring familial aggregation by
 #   using odds-ratio regression models.  Genet Epidemiol 8:361-370.
-# 
+#
 #   KY Liang, SL Zeger, B Qaqish (1992) Multivariate regression
 #   analyses for categorical data (with discussion). JRSS B
 #   54(1):3-40.
@@ -37,7 +37,7 @@
 # We then use generalized estimating equations (GEE) to fit a
 # model with logit{E(y|x)} = x beta and ln OR(y1,y2|x) = gamma
 # for all individuals within a group. (We're thinking of siblings.)
-# 
+#
 # INPUT:
 #   y = binary outcome
 #   x = matrix of covariates (including intercept)
@@ -55,20 +55,20 @@
 #   trace = indicates whether to print tracing info (larger values gives
 #           more verbose information)
 #   debug = if TRUE, print even more stuff useful for my own debugging
-#           purposes.  
+#           purposes.
 #
 #   method indicates whether to use the full GEE, GEE1 (independence of
 #          mu's and eta's) or the identity matrix as the working
 #          covariance matrix
-# 
+#
 ######################################################################
 gee.sibs.or <-
-function(y, x, id, beta, gamma, give.se=TRUE, return.intercept=FALSE,
+function(y, x, id, beta=NULL, gamma=0.5, give.se=TRUE, return.intercept=FALSE,
          maxit=1000, tol=1e-5, eta.tol=1e-9, trace=FALSE, debug=FALSE,
          method=c("gee2","gee1","identity"))
 {
   # check arguments
-  if(!missing(beta) && length(beta) != ncol(x)) {
+  if(!is.null(beta) && length(beta) != ncol(x)) {
     if(length(beta) == ncol(x)+1) {
       gamma <- beta[length(beta)]
       beta <- beta[-length(beta)]
@@ -87,12 +87,11 @@ function(y, x, id, beta, gamma, give.se=TRUE, return.intercept=FALSE,
   wh <- split(1:length(id), id)
   n.fam <- length(wh)
   n.covar <- ncol(x)
-  
+
   # starting values
-  if(missing(beta))
+  if(is.null(beta))
     beta <- glm(y ~ -1 + x, family=binomial(link=logit))$coef
-  if(missing(gamma)) gamma <- 0.5
-  
+
   names(beta) <- names(gamma) <- NULL
   if(trace) cat(0,beta,gamma,"\n")
 
@@ -110,17 +109,17 @@ function(y, x, id, beta, gamma, give.se=TRUE, return.intercept=FALSE,
 
       if(any(is.na(unlist(result[[j]]))))
         warning("gee.sibs.or.bits returned NAs", j, "\n")
-      
+
       len <- length(wh[[j]])
       if(!est.gamma) { # assume gamma=0 (don't estimate it)
         result[[j]]$matC <- result[[j]]$matC[1:n.covar,1:len,drop=FALSE]
         result[[j]]$matBinv <- result[[j]]$matBinv[1:len,1:len,drop=FALSE]
         result[[j]]$vecA <- result[[j]]$vecA[1:len]
       }
-        
+
       if(method=="gee2") temp <- result[[j]]$matC %*% solve(result[[j]]$matBinv)
       else if(method=="gee1") {
-        result[[j]]$matC[1:n.covar,-(1:len)] <- 
+        result[[j]]$matC[1:n.covar,-(1:len)] <-
           result[[j]]$matC[-(1:n.covar),1:len] <- 0
         result[[j]]$matBinv[1:len,-(1:len)] <-
           result[[j]]$matBinv[-(1:len),1:len] <- 0
@@ -131,7 +130,7 @@ function(y, x, id, beta, gamma, give.se=TRUE, return.intercept=FALSE,
       if(j==1) {
         first.mat <- temp %*% t(result[[j]]$matC)
         temp2 <- temp %*% result[[j]]$vecA
-        second.mat <- temp2 
+        second.mat <- temp2
         third.mat <- temp2 %*% t(temp2)
       }
       else {
@@ -155,7 +154,7 @@ function(y, x, id, beta, gamma, give.se=TRUE, return.intercept=FALSE,
       newbeta <- beta + step[-length(step)]
 #      if(cur.val <= prev.val)
         newgamma <- gamma + step[length(step)]
-#      else 
+#      else
 #        newgamma <- gamma + step[length(step)]
     }
     else {
@@ -206,13 +205,13 @@ function(y, x, id, beta, gamma, give.se=TRUE, return.intercept=FALSE,
     names(output) <- c("lnOR",colnames(x))
     if(!return.intercept) output <- output[-2]
   }
-  
+
   output
 }
 
 
 gee.sibs.or.bits <-
-function(y, x, beta, gamma, maxit=1000, 
+function(y, x, beta, gamma, maxit=1000,
          eta.tol=1e-9, trace=FALSE)
 {
   n.sibs <- length(y)
@@ -233,7 +232,7 @@ function(y, x, beta, gamma, maxit=1000,
                as.integer(n.covar),
                as.integer(n.vecA),
                as.integer(y),
-               as.double(t(x)), # input transpose of covariate matrix 
+               as.double(t(x)), # input transpose of covariate matrix
                as.double(beta),
                as.double(gamma),
                matC = as.double(rep(0,(n.covar+1)*n.vecA)),
@@ -243,12 +242,12 @@ function(y, x, beta, gamma, maxit=1000,
                as.double(eta.tol),
                as.integer(trace),
                PACKAGE="geesibsor")
-               
+
   return(list(matC=matrix(result$matC, nrow=n.covar+1),
               matBinv=matrix(result$matBinv, nrow=n.vecA),
               vecA=result$vecA))
 }
-              
+
 
 
 # end of gee_sibs_or.R
