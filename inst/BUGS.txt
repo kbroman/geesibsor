@@ -1,4 +1,3 @@
-
 Bugs and bug fixes for R/geesibsor
 ----------------------------------------------------------------------
 This file is intended to contain all known bugs in the R/geesibsor
@@ -8,12 +7,12 @@ package.
 
 If you find a potential bug in R/geesibsor, please send an email, with
 as many details as possible and possibly example data, to Karl Broman,
-<kbroman@biostat.wisc.edu>.
+<broman@wisc.edu>.
 ----------------------------------------------------------------------
 
 Version 0.50
 
     None yet identified
-       
+
 ----------------------------------------------------------------------
 end of BUGS.txt

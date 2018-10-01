@@ -77,7 +77,7 @@ gee.sibs.or(y, x, id, beta=NULL, gamma=0.5, give.se=TRUE, return.intercept=FALSE
   Johns Hopkins University, Baltimore, Maryland.
 }
 
-\author{Karl W Broman, \email{kbroman@biostat.wisc.edu}}
+\author{Karl W Broman, \email{broman@wisc.edu}}
 
 \examples{
 data(fake.data)

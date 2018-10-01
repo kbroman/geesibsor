@@ -1,11 +1,11 @@
 \name{fake.data}
 \alias{fake.data}
 
-\title{Fake data} 
+\title{Fake data}
 
-\description{ 
+\description{
   Fake data for illustrating and testing the R/geesibsor package.
-} 
+}
 
 \usage{data(fake.data)}
 
@@ -16,15 +16,15 @@
 \details{
   There are data on 696 individuals in 270 sibships.  The first column
   is the phenotype.  The next is an indicator of family assignment.  The
-  last 6 columns are covariates.  
+  last 6 columns are covariates.
 }
 
 %\references{
 %}
-  
+
 \source{
   These are completely fake data.  Email Karl W. Broman ,
-  \email{kbroman@biostat.wisc.edu}, for further information.
+  \email{broman@wisc.edu}, for further information.
 }
 
 \examples{

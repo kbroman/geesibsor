@@ -1,9 +1,8 @@
-
 README file for the geesibsor package
 ----------------------------------------------------------------------
 This explains the installation of the geesibsor package for R.  If you
 have any problems with installation, send an email to Karl Broman
-<kbroman@biostat.wisc.edu>.
+<broman@wisc.edu>.
 ----------------------------------------------------------------------
 
 OBTAINING R
@@ -12,12 +11,12 @@ OBTAINING R
   Visit http://cran.r-project.org or a local mirror (for example,
   http://cran.us.r-project.org).  Source code is available for Unix,
   and binaries are available for Windows, MacOS, and many versions of
-  Linux.  
+  Linux.
 
 
 OBTAINING R/geesibsor
 
-  You can obtain the latest version of R/geesibsor from 
+  You can obtain the latest version of R/geesibsor from
 
       http://www.biostat.wisc.edu/~kbroman/software
 
@@ -43,25 +42,25 @@ INSTALLATION OF R AND R/geesibsor (Windows)
 
 INSTALLATION OF R/geesibsor (Unix)
 
-  1. We'll assume that R has already been installed. 
+  1. We'll assume that R has already been installed.
 
   2. Go into the directory containing the file "geesibsor_*.tar.gz".
 
   3. Do one of the following:
 
      a. To install R/geesibsor in the standard location
-        (/usr/local/lib/R/library), type 
+        (/usr/local/lib/R/library), type
 
             R INSTALL geesibsor_*.tar.gz
 
         You'll probably need to be superuser.
 
-     b. To install the package locally, type 
+     b. To install the package locally, type
 
             R INSTALL --library=/home/auser/Rlibs geesibsor_*.tar.gz
 
         (where "/home/auser/Rlibs" should be replaced with the
-        appropriate directory).  
+        appropriate directory).
 
         Create a file ~/.Renviron containing the line
 
@@ -92,7 +91,7 @@ GETTING STARTED
 QUESTIONS/COMMENTS/CONCERNS
 
   If you have any questions, suggestions, problems or complaints
-  regarding R/geesibsor, please email Karl Broman <kbroman@biostat.wisc.edu>.
-  
+  regarding R/geesibsor, please email Karl Broman <broman@wisc.edu>.
+
 ----------------------------------------------------------------------
 end of README.txt
