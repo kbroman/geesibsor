@@ -83,18 +83,18 @@ gee.output <- gee.sibs.or(y, x, id, trace=TRUE)
 \references{
 Liang, K.-Y. and Beaty, T. H. (1991) Measuring familial
 aggregation by using odds-ratio regression models.  \emph{Genetic
-Epidemiology}, \bold{8}, 361--370.
+Epidemiology}, \strong{8}, 361--370.
 
 Liang, K.-Y., Zeger, S. L. and Qaqish, B. (1992) Multivariate regression
 analyses for categorical data (with discussion).  \emph{J. Roy. Statist.
-Soc.} B, \bold{1}, 3--40.
+Soc.} B, \strong{1}, 3--40.
 
 Qaqish, B. F. (1990) Multivariate regression models using generalized
 estimating equations.  Ph. D. Thesis, Department of Biostatistics, Johns
 Hopkins University, Baltimore, Maryland.
 }
 \seealso{
-\code{\link{fake.data}}
+\code{\link[=fake.data]{fake.data()}}
 }
 \author{
 Karl W Broman, \email{broman@wisc.edu}

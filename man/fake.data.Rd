@@ -6,7 +6,7 @@
 \title{Fake data}
 \format{A numeric matrix with 696 rows and 8 columns.}
 \source{
-These are completely fake data.  Email Karl W. Broman ,
+These are completely fake data.  Email Karl W. Broman,
 \email{broman@wisc.edu}, for further information.
 }
 \usage{
@@ -29,6 +29,6 @@ gee.output <- gee.sibs.or(y, x, id)
 
 }
 \seealso{
-\code{\link{gee.sibs.or}}
+\code{\link[=gee.sibs.or]{gee.sibs.or()}}
 }
 \keyword{datasets}

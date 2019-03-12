@@ -21,10 +21,10 @@
 #' @param x A numeric matrix of covariates, including an intercept term.
 #' @param id A vector of integers indicating family/group assignment.
 #' @param beta Optional starting values for the covariate coefficients; if
-#' \code{length(beta) = ncol(x)+1}, the last value is assumed to be a starting
-#' value for \code{gamma}.
+#' `length(beta) = ncol(x)+1`, the last value is assumed to be a starting
+#' value for `gamma`.
 #' @param gamma Optional starting value for the log odds ratio.  If
-#' \code{gamma=0}, it is assumed to be 0 and is not estimated.
+#' `gamma=0`, it is assumed to be 0 and is not estimated.
 #' @param give.se If true, calculate estimated standard errors.
 #' @param return.intercept If TRUE, the estimate for the intercept coefficient
 #' is included in the output.
@@ -41,25 +41,25 @@
 #' @param method Indicates whether to use GEE2, GEE1, or the identity matrix as
 #' the working covariance matrix.
 #'
-#' @return If \code{give.se=TRUE}, the output is a matrix with four columns:
+#' @return If `give.se=TRUE`, the output is a matrix with four columns:
 #' the parameter estimates, estimated SEs, \eqn{(est/SE)^2}, and P-values.  If
-#' \code{give.se=FALSE}, a vector with only the parameter estimates is given.
+#' `give.se=FALSE`, a vector with only the parameter estimates is given.
 #'
 #' The first item is the sib-sib log odds ratio; the rest are the covariates'
-#' coefficients; if \code{return.intercept=FALSE}, the intercept is excluded
+#' coefficients; if `return.intercept=FALSE`, the intercept is excluded
 #' from the output.
 #'
 #' @author Karl W Broman, \email{broman@@wisc.edu}
 #'
-#' @seealso \code{\link{fake.data}}
+#' @seealso [fake.data()]
 #'
 #' @references Liang, K.-Y. and Beaty, T. H. (1991) Measuring familial
-#' aggregation by using odds-ratio regression models.  \emph{Genetic
-#' Epidemiology}, \bold{8}, 361--370.
+#' aggregation by using odds-ratio regression models.  *Genetic
+#' Epidemiology*, **8**, 361--370.
 #'
 #' Liang, K.-Y., Zeger, S. L. and Qaqish, B. (1992) Multivariate regression
-#' analyses for categorical data (with discussion).  \emph{J. Roy. Statist.
-#' Soc.} B, \bold{1}, 3--40.
+#' analyses for categorical data (with discussion).  *J. Roy. Statist.
+#' Soc.* B, **1**, 3--40.
 #'
 #' Qaqish, B. F. (1990) Multivariate regression models using generalized
 #' estimating equations.  Ph. D. Thesis, Department of Biostatistics, Johns

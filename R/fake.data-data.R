@@ -8,10 +8,10 @@
 #'
 #' @format A numeric matrix with 696 rows and 8 columns.
 #'
-#' @seealso \code{\link{gee.sibs.or}}
+#' @seealso [gee.sibs.or()]
 #'
-#' @source These are completely fake data.  Email Karl W. Broman ,
-#' \email{broman@wisc.edu}, for further information.
+#' @source These are completely fake data.  Email Karl W. Broman,
+#' \email{broman@@wisc.edu}, for further information.
 #'
 #' @keywords datasets
 #'
