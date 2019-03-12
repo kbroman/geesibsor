@@ -1,67 +1,81 @@
-######################################################################
-# gee_sibs_or.R
-#
-# Karl W. Broman
-#
-# first written 17 Sept 2003
-# last modified 16 Oct 2006
-#
-# The goal of this is to estimate the log odds ratio between siblings
-# for some binary response, after controlling for covariates.  We
-# seek to solve the GEE corresponding to logit{E(y|x)} = x beta
-# and log OR(y1, y2 | x) = gamma.
-#
-# See the following two papers:
-#
-#   KY Liang and TH Beaty (1991) Measuring familial aggregation by
-#   using odds-ratio regression models.  Genet Epidemiol 8:361-370.
-#
-#   KY Liang, SL Zeger, B Qaqish (1992) Multivariate regression
-#   analyses for categorical data (with discussion). JRSS B
-#   54(1):3-40.
-#
-# The latter paper has all of the details.
-#
-######################################################################
-
-######################################################################
 # gee.sibs.or
 #
-# id should be a categorical variable indicating the groups to which
-# the individuals belong
-#
-# y should be a 0/1 response
-#
-# x should be a matrix of numeric covariates (including the intercept)
-#
-# We then use generalized estimating equations (GEE) to fit a
-# model with logit{E(y|x)} = x beta and ln OR(y1,y2|x) = gamma
-# for all individuals within a group. (We're thinking of siblings.)
-#
-# INPUT:
-#   y = binary outcome
-#   x = matrix of covariates (including intercept)
-#   id = vector indicating family/group status
-#
-#   beta = starting values for beta's (and, in length = ncol(x)+1, for gamma)
-#   gamma = starting value for gamma (if =0, gamma is assumed to be
-#           0 and is not estimated)
-#
-#   give.se = if TRUE, return estimated SEs (as an attribute)
-#
-#   maxit = maximum number of iterations for all iterative methods
-#   tol = tolerance for convergence in GEE
-#   eta.tol = tolerance for convergence in calculating the etas
-#   trace = indicates whether to print tracing info (larger values gives
-#           more verbose information)
-#   debug = if TRUE, print even more stuff useful for my own debugging
-#           purposes.
-#
-#   method indicates whether to use the full GEE, GEE1 (independence of
-#          mu's and eta's) or the identity matrix as the working
-#          covariance matrix
-#
-######################################################################
+#' Estimate odds ratio for siblings adjusting for covariates
+#'
+#' Use GEE to estimate a common sib-sib odds ratio for a binary phenotype,
+#' adjusting for covariates with a logistic model.
+#'
+#' We assume a set of randomly ascertained sibships with measurements on a
+#' binary phenotype and a set of covariates.  We use a logistic model to
+#' contact the expected phenotype and the covariates and assume a constant log
+#' odds ratio for sibs' phenotypes.  Parameters are estimated using generalized
+#' estimating equations (GEE).
+#'
+#' The idea is described in Liange and Beaty (1991).  All of the details appear
+#' in Liang et al. (1992) and Qaqish (1990).
+#'
+#' Key bits are coded in C; but there's still a lot done directly in R.
+#' Eventually I'd like to move more of the code to C, for the sake of speed.
+#'
+#' @param y A vector of binary phenotypes (coded 0/1).
+#' @param x A numeric matrix of covariates, including an intercept term.
+#' @param id A vector of integers indicating family/group assignment.
+#' @param beta Optional starting values for the covariate coefficients; if
+#' \code{length(beta) = ncol(x)+1}, the last value is assumed to be a starting
+#' value for \code{gamma}.
+#' @param gamma Optional starting value for the log odds ratio.  If
+#' \code{gamma=0}, it is assumed to be 0 and is not estimated.
+#' @param give.se If true, calculate estimated standard errors.
+#' @param return.intercept If TRUE, the estimate for the intercept coefficient
+#' is included in the output.
+#' @param maxit Maximum number of iterations.  If 0, some debugging information
+#' is returned.
+#' @param tol Tolerance value for determining convergence in Newton's method to
+#' solve the GEE.
+#' @param eta.tol Tolerance value for determining convergence in Newton's
+#' method to calculate the eta parameters.
+#' @param trace Indicates whether to display tracing information; large
+#' indicators result in more verbose output.
+#' @param debug Indicates whether to display special debugging-related
+#' information.
+#' @param method Indicates whether to use GEE2, GEE1, or the identity matrix as
+#' the working covariance matrix.
+#'
+#' @return If \code{give.se=TRUE}, the output is a matrix with four columns:
+#' the parameter estimates, estimated SEs, \eqn{(est/SE)^2}, and P-values.  If
+#' \code{give.se=FALSE}, a vector with only the parameter estimates is given.
+#'
+#' The first item is the sib-sib log odds ratio; the rest are the covariates'
+#' coefficients; if \code{return.intercept=FALSE}, the intercept is excluded
+#' from the output.
+#'
+#' @author Karl W Broman, \email{broman@@wisc.edu}
+#'
+#' @seealso \code{\link{fake.data}}
+#'
+#' @references Liang, K.-Y. and Beaty, T. H. (1991) Measuring familial
+#' aggregation by using odds-ratio regression models.  \emph{Genetic
+#' Epidemiology}, \bold{8}, 361--370.
+#'
+#' Liang, K.-Y., Zeger, S. L. and Qaqish, B. (1992) Multivariate regression
+#' analyses for categorical data (with discussion).  \emph{J. Roy. Statist.
+#' Soc.} B, \bold{1}, 3--40.
+#'
+#' Qaqish, B. F. (1990) Multivariate regression models using generalized
+#' estimating equations.  Ph. D. Thesis, Department of Biostatistics, Johns
+#' Hopkins University, Baltimore, Maryland.
+#'
+#' @keywords models
+#'
+#' @examples
+#' data(fake.data)
+#' y <- fake.data[,1]
+#' id <- fake.data[,2]
+#' x <- cbind(1, fake.data[,-(1:2)])
+#' gee.output <- gee.sibs.or(y, x, id, trace=TRUE)
+#'
+#' @importFrom stats glm binomial pchisq
+#' @export gee.sibs.or
 gee.sibs.or <-
 function(y, x, id, beta=NULL, gamma=0.5, give.se=TRUE, return.intercept=FALSE,
          maxit=1000, tol=1e-5, eta.tol=1e-9, trace=FALSE, debug=FALSE,
@@ -210,6 +224,8 @@ function(y, x, id, beta=NULL, gamma=0.5, give.se=TRUE, return.intercept=FALSE,
 }
 
 
+#' @useDynLib geesibsor, .registration=TRUE
+
 gee.sibs.or.bits <-
 function(y, x, beta, gamma, maxit=1000,
          eta.tol=1e-9, trace=FALSE)
@@ -221,11 +237,6 @@ function(y, x, beta, gamma, maxit=1000,
 
   if(n.sibs > 1) n.vecA <- n.sibs + choose(n.sibs,2)
   else n.vecA <- n.sibs
-
-#  if(!is.loaded("R_gee_sibs_or_bits")) {
-#    dyn.load("gee_orreg.so")
-#    cat(" -Loaded gee_orreg.so\n")
-#  }
 
   result <- .C("R_gee_sibs_or_bits",
                as.integer(n.sibs),
@@ -247,7 +258,3 @@ function(y, x, beta, gamma, maxit=1000,
               matBinv=matrix(result$matBinv, nrow=n.vecA),
               vecA=result$vecA))
 }
-
-
-
-# end of gee_sibs_or.R
