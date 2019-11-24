@@ -1,12 +1,19 @@
 Package: geesibsor
-Version: 0.51-4
-Date: 2016-03-30
+Version: 0.51-5
+Date: 2019-03-12
 Title: Odds Ratio for Siblings by GEE
 Author: Karl W Broman [aut, cre] (<https://orcid.org/0000-0002-4914-6671>)
 Maintainer: Karl W Broman <broman@wisc.edu>
 Authors@R: c(person("Karl W", "Broman", role=c("aut", "cre"),
              email="broman@wisc.edu", comment=c(ORCID = "0000-0002-4914-6671")))
-Description: Estimate the odds ratio for siblings for a binary phenotype, adjusting for covariates, using generalized estimating equations.
-Depends: R (>= 2.10.1), stats
+Description: Estimate the odds ratio for siblings for a binary phenotype,
+    adjusting for covariates, using generalized estimating equations.
+Depends: R (>= 2.10.1)
+Imports: stats
 License: GPL-3
 URL: https://github.com/kbroman/geesibsor
+BugReports: https://github.com/kbroman/geesibsor/issues
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
+Roxygen: list(markdown = TRUE)
