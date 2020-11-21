@@ -1,6 +1,6 @@
 ## R/geesibsor
 
-[![Build Status](https://travis-ci.org/kbroman/geesibsor.svg?branch=master)](https://travis-ci.org/kbroman/geesibsor)
+[![R build status](https://github.com/kbroman/geesibsor/workflows/R-CMD-check/badge.svg)](https://github.com/kbroman/geesibsor/actions)
 
 [Karl W Broman](https://kbroman.org)
 
