@@ -1,6 +1,7 @@
 ## R/geesibsor
 
-[![R build status](https://github.com/kbroman/geesibsor/workflows/R-CMD-check/badge.svg)](https://github.com/kbroman/geesibsor/actions)
+[![R-CMD-check](https://github.com/kbroman/geesibsor/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/kbroman/geesibsor/actions/workflows/R-CMD-check.yaml)
+[![zenodo DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.5149504.svg)](https://doi.org/10.5281/zenodo.5149504)
 
 [Karl W Broman](https://kbroman.org)
 
