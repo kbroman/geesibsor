@@ -5,6 +5,11 @@ Licensed under the GNU General Public License version 3
 https://github.com/kbroman/geesibsor
 ----------------------------------------------------------------------
 
+Version 0.51-6, 2026-05-05:
+
+  Removed includes of R_ext/PrtUtil.h in C code
+
+
 Version 0.51-5, 2019-03-12:
 
   Convert documentation to use Roxygen2

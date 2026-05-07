@@ -4,10 +4,21 @@
 \alias{gee.sibs.or}
 \title{Estimate odds ratio for siblings adjusting for covariates}
 \usage{
-gee.sibs.or(y, x, id, beta = NULL, gamma = 0.5, give.se = TRUE,
-  return.intercept = FALSE, maxit = 1000, tol = 0.00001,
-  eta.tol = 0.000000001, trace = FALSE, debug = FALSE,
-  method = c("gee2", "gee1", "identity"))
+gee.sibs.or(
+  y,
+  x,
+  id,
+  beta = NULL,
+  gamma = 0.5,
+  give.se = TRUE,
+  return.intercept = FALSE,
+  maxit = 1000,
+  tol = 0.00001,
+  eta.tol = 0.000000001,
+  trace = FALSE,
+  debug = FALSE,
+  method = c("gee2", "gee1", "identity")
+)
 }
 \arguments{
 \item{y}{A vector of binary phenotypes (coded 0/1).}
